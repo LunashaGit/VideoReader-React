@@ -1,3 +1,59 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+.video-player {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+}
+.video {
+  height: 24rem;
+}
+
+.controls {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.5rem;
+  width: 40rem;
+  margin-left: auto;
+  margin-right: auto;
+  gap: 3rem;
+}
+
+.buttons {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+}
+
+.volume {
+  display: flex;
+  align-items: center;
+}
+
+.input_volume {
+  width: 4rem;
+  height: 4rem;
+  cursor: pointer;
+}
+.progress {
+  width: 45rem;
+}
+
+.input_volume {
+  rotate: -90deg;
+  cursor: pointer;
+}
+
+.playback {
+  cursor: pointer;
+}
+
+.div_playback {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}

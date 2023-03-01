@@ -65,29 +65,32 @@ export default function VideoPlayer({ src }: { src: string }) {
   return (
     <div className="video-player">
       <video
+        className="video"
         ref={videoRef}
         src={src}
         onTimeUpdate={handleTimeUpdate}
         onLoadedMetadata={handleLoadedMetadata}
         autoPlay
-      ></video>
-      <Controls
-        isPlaying={isPlaying}
-        onTogglePlay={togglePlay}
-        onVolumeChange={handleVolumeChange}
-        volume={volume}
-        playbackRate={playbackRate}
-        onPlaybackRateChange={handlePlaybackRateChange}
       />
-      <Progress
-        currentTime={currentTime}
-        duration={duration}
-        onProgressChange={handleProgressChange}
-      />
-      <FullscreenButton
-        isFullScreen={isFullScreen}
-        onClick={handleFullScreenClick}
-      />
+      <div className="controls">
+        <Controls
+          isPlaying={isPlaying}
+          onTogglePlay={togglePlay}
+          onVolumeChange={handleVolumeChange}
+          volume={volume}
+          playbackRate={playbackRate}
+          onPlaybackRateChange={handlePlaybackRateChange}
+        />
+        <Progress
+          currentTime={currentTime}
+          duration={duration}
+          onProgressChange={handleProgressChange}
+        />
+        <FullscreenButton
+          isFullScreen={isFullScreen}
+          onClick={handleFullScreenClick}
+        />
+      </div>
     </div>
   );
 }
@@ -108,13 +111,14 @@ function Controls({
   onPlaybackRateChange: (event: React.ChangeEvent<HTMLSelectElement>) => void;
 }) {
   return (
-    <div className="video-player__controls">
+    <div className="buttons">
       <button className="video-player__play" onClick={onTogglePlay}>
         {isPlaying ? "Pause" : "Play"}
       </button>
-      <div className="video-player__volume">
+      <div className="volume">
         <label htmlFor="volume">Volume</label>
         <input
+          className="input_volume"
           type="range"
           min="0"
           max="1"
@@ -124,12 +128,13 @@ function Controls({
           id="volume"
         />
       </div>
-      <div className="video-player__playback-rate">
+      <div className="div_playback">
         <label htmlFor="playback-rate">Speed</label>
         <select
           value={playbackRate}
           onChange={onPlaybackRateChange}
           id="playback-rate"
+          className="playback"
         >
           <option value="0.5">0.5x</option>
           <option value="1">1x</option>
@@ -153,8 +158,9 @@ function Progress({
   const progressPercent = (currentTime / duration) * 100;
 
   return (
-    <div className="video-player__progress">
+    <>
       <input
+        className="progress"
         type="range"
         min="0"
         max="100"
@@ -162,7 +168,7 @@ function Progress({
         value={progressPercent}
         onChange={onProgressChange}
       />
-    </div>
+    </>
   );
 }
 
